@@ -5,7 +5,15 @@ gem 'rails', '3.1.1'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+#Heroku wants this
+group :production do
+  gem 'pg'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+  gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
+end
 
 group :development do
     gem 'rspec-rails', '2.6.1'
