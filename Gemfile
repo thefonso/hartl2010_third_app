@@ -1,7 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.1'
-
+gem 'gravatar_image_tag'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
@@ -24,6 +24,7 @@ group :test do
     gem 'rspec-rails' 
     gem 'webrat', '0.7.1'
     gem 'spork', '0.9.0.rc8'
+    gem 'factory_girl_rails'
 end
 
 gem 'json'
