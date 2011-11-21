@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   
+  # before_filter :authenticate, :only => [:edit, :update]
+
   def show
     @user = User.find(params[:id])
     @title = @user.name
@@ -15,8 +17,7 @@ class UsersController < ApplicationController
     if @user.save
       sign_in @user
       # Handle a successful save.
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      redirect_to @user, :flash => {:success => "Welcome to the Sample App!"}
     else
         @title = "Sign up"
         render 'new'
@@ -24,17 +25,24 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user =User.find(params[:id])
+    @user = User.find(params[:id])
     @title = "Edit user"
   end
   
   def update
     @user =User.find(params[:id])
     if @user.update_attributes(params[:user])
-      redirect_to @user, :flash => { :success => "Profile updated." }
+      redirect_to @user, :flash => {:success => "Profile updated."}
     else
       @title = "Edit user"
       render 'edit'
     end
   end
+
+  # private
+  # 
+  #    def authenticate
+  #      redirect_to signin_path unless signed_in?
+  #    end
+
 end
