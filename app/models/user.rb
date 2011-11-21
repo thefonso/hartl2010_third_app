@@ -18,19 +18,35 @@ class User < ActiveRecord::Base
   
   before_save :encrypt_password
   
- 
-  
-  
-  
-  # Return true if the user's password matches the submitted password.
   def has_password?(submitted_password)
-     encrypted_password == encrypt(submitted_password)
+    encrypted_password == encrypt(submitted_password)
   end
-  def self.authenticate(email, submitted_password)
-    user = find_by_email(email)
-    return nil if user.nil?
-    return user if user.has_password?(submitted_password)
+
+  # Return true if the user's password matches the submitted password.
+  # All this jazz below is wrong..this is what was in the pdf book...
+  # def self.authenticate(email, submitted_password)
+  #   user = find_by_email(email)
+  #   return nil if user.nil?
+  #   return user if user.has_password?(submitted_password)
+  # end
+  # def self.authenticate_with_salt(id, cookie_salt)
+  #   user = find_by_id(id)
+  #   (user && user.salt == cookie_salt) ? user : nil
+  # end
+  # All the jazz above is wrong....
+
+  class<<self
+    def authenticate(email, submitted_password)
+      user = find_by_email(email)
+      (user && user.has_password?(submitted_password)) ? user : nil
+    end
+
+    def authenticate_with_salt(id, cookie_salt)
+      user = find_by_id(id)
+      (user && user.salt == cookie_salt) ? user :nil
+    end
   end
+
   private
   
   def encrypt_password
