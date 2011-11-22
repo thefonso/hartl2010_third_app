@@ -158,6 +158,11 @@ describe UsersController do
         @user.email.should == user.email
         @user.encrypted_password.should == user.encrypted_password
       end 
+      
+      it "should have a flssh message" do
+        put :update, :id => @user, :user => @attr
+        flash[:success].should =~ /updated/
+      end
     end
   end 
 end
