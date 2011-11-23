@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  
-  # before_filter :authenticate, :only => [:edit, :update]
-  
+  #this is where it breaks
+  before_filter :authenticate, :only => [:edit]
+  #this snippet above and the private method below
   
   def show
     @user = User.find(params[:id])
@@ -41,9 +41,9 @@ class UsersController < ApplicationController
    end
 
   private
-  
-  # def authenticate
-  #      deny_access unless signed_in?
-  #   end
+  # ton o failures here
+    def authenticate
+        redirect_to signin_path unless signed_in?
+    end
 
 end
