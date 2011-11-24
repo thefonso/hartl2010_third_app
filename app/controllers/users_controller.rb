@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   #this is where it breaks
-  before_filter :authenticate, :only => [:edit]
+  before_filter :authenticate, :only => [:edit, :update]
   #this snippet above and the private method below
   
   def show
@@ -43,7 +43,7 @@ class UsersController < ApplicationController
   private
   # ton o failures here
     def authenticate
-        redirect_to signin_path unless signed_in?
+        deny_access unless signed_in?
     end
 
 end

@@ -20,7 +20,6 @@ module SessionsHelper
     cookies.delete(:remember_token)
     @current_user = nil
   end
-  
 
   
   def deny_access
