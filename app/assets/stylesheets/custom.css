@@ -51,8 +51,17 @@ nav ul li a:hover {
 }
 
 /* Sign up button */
-a.signup_button { margin-left: auto; margin-right: auto; display: block; text-align: center; width: 190px;
-color: #fff; background: #006400; font-size: 150%; font-weight: bold; padding: 20px;
+a.signup_button { 
+	margin-left: auto; 
+	margin-right: auto; 
+	display: block; 
+	text-align: center; 
+	width: 190px;
+	color: #fff; 
+	background: #006400; 
+	font-size: 150%; 
+	font-weight: bold; 
+	padding: 20px;
 }
 
 /* Round corners */
@@ -84,20 +93,47 @@ margin-top: 10px; padding: 2px; background-color: red; display: table;
 }
 #error_explanation {
 width: 400px;
-border: 2px solid red; padding: 7px; padding-bottom: 12px; margin-bottom: 20px; background-color: #f0f0f0;
+border: 2px solid red; 
+padding: 7px; 
+padding-bottom: 12px; 
+margin-bottom: 20px; 
+background-color: #f0f0f0;
 }
-#error_explanation h2 { text-align: left; font-weight: bold; padding: 5px 5px 5px 15px; font-size: 12px;
-margin: -7px; background-color: #c00; color: #fff;
+#error_explanation h2 { 
+	text-align: left; 
+	font-weight: bold; 
+	padding: 5px 5px 5px 15px; 
+	font-size: 12px;
+	margin: -7px; 
+	background-color: #c00; 
+	color: #fff;
 }
-#error_explanation p { color: #333; margin-bottom: 0; padding: 5px;
+#error_explanation p { 
+	color: #333; 
+	margin-bottom: 0; 
+	padding: 5px;
 }
-#error_explanation ul li { font-size: 12px; list-style: square;
+#error_explanation ul li { 
+	font-size: 12px; 
+list-style: square;
+}
+
+ul.users {
+	margin-top: 1em;
+}
+
+ul.users {
+	list-style: none;
 }
 
 /*Footer*/
 
 footer {
-text-align: center; margin-top: 10px; width: 710px; margin-left: auto; margin-right: auto;
+text-align: center; 
+margin-top: 10px; 
+width: 710px; 
+margin-left: auto; 
+margin-right: auto;
 }
 footer nav { float: none;
 }

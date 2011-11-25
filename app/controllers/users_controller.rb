@@ -1,8 +1,13 @@
 class UsersController < ApplicationController
   #this is where it breaks
-  before_filter :authenticate, :only => [:edit, :update]
+  before_filter :authenticate, :only => [:index,:edit, :update]
   before_filter :correct_user, :only => [:edit, :update]
   #this snippet above and the private method below
+  
+  def index
+    @users = User.all
+    @title = "All users"
+  end
   
   def show
     @user = User.find(params[:id])
@@ -39,7 +44,7 @@ class UsersController < ApplicationController
        @title = "Edit user"
        render 'edit'
      end
-   end
+  end
 
   private
   # ton o failures here
