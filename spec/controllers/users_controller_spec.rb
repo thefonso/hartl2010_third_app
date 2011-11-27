@@ -3,7 +3,7 @@ require 'spec_helper'
 describe UsersController do
   render_views
  
- describe "GET index" do
+  describe "GET index" do
    
    describe "for non-signed-in users" do
      it "should deny access" do
@@ -69,7 +69,6 @@ describe UsersController do
    end
  end
 
- 
   describe "POST 'create'" do
     
     describe "success" do
@@ -138,13 +137,39 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("title", :content => @user.name) 
     end
-    it "should include the user's name" do
+    it "should have the user's name" do
       get :show, :id => @user
       response.should have_selector("h1", :content => @user.name)
     end
     it "should have a profile image" do
       get :show, :id => @user
       response.should have_selector("h1>img", :class => "gravatar")
+    end
+    # it "should have the right URL" do
+    #       get :show, :id => @user
+    #       response.should have_selector('td>a', :content => user_path(@user),
+    #                                             :href    => user_path(@user))
+    #     end
+    it "should show the users microposts" do
+      mp1 = Factory(:micropost, :user => @user, :content => "Foo bar")
+      mp2 = Factory(:micropost, :user => @user, :content => "Baz quux")
+      get :show, :id => @user
+      response.should have_selector('span.content', :content => mp1.content)
+      response.should have_selector('span.content', :content => mp2.content)
+    end
+    
+    it "should paginate microposts" do
+      #30 is default for one page so we're doing 35 here
+      35.times {Factory(:micropost, :user => @user, :content => "foo")}
+      get :show, :id => @user
+      response.should have_selector('div.pagination')
+    end
+    
+    it "should display the micropost count" do
+      10.times {Factory(:micropost, :user => @user, :content => "foo")}
+      get :show, :id => @user
+      response.should have_selector('td.sidebar', 
+                                    :content => @user.microposts.count.to_s)
     end
   end
   
@@ -269,7 +294,8 @@ describe UsersController do
       end
     end
   end  
- describe "DELETE 'destroy" do
+  
+  describe "DELETE 'destroy" do
     
     before(:each) do
       @user = Factory(:user)
