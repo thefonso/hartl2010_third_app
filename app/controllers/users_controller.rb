@@ -55,10 +55,6 @@ class UsersController < ApplicationController
   end
   
   private
-  # ton o failures here
-    def authenticate
-      deny_access unless signed_in?
-    end
     
     def correct_user
       @user = User.find(params[:id])

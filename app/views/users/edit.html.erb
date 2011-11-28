@@ -1,12 +1,13 @@
 <h1>Edit user</h1>
 <%= form_for(@user) do |f| %>
- <%= render 'fields', :foobar => f %>
+	<%= render 'shared/error_messages', :object => f.object %> 
+	<%= render 'fields', :foobar => f %>
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
   <div>
     <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails" target=_blank>change</a>
+    <a href="http://gravatar.com/emails">change</a>
   </div>
      
       
