@@ -22,6 +22,9 @@ class User < ActiveRecord::Base
   def has_password?(submitted_password)
     encrypted_password == encrypt(submitted_password)
   end
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
 
   # Return true if the user's password matches the submitted password.
   # All this jazz below is wrong..this is what was in the pdf book...
