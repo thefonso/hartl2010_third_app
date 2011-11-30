@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
   #this is where it breaks
-  before_filter :authenticate, :only => [:index,:edit, :update, :destroy]
-  before_filter :correct_user, :only => [:edit, :update]
-  before_filter :admin_user, :only => :destroy
+  before_filter :authenticate,  :except => [:show,:new, :create]
+  before_filter :correct_user,  :only => [:edit, :update]
+  before_filter :admin_user,    :only => :destroy
   #this snippet above and the private method below
   
   def index
@@ -15,6 +15,20 @@ class UsersController < ApplicationController
     @microposts = @user.microposts.paginate(:page => params[:page])
     @title = @user.name
     
+  end
+
+  def following
+    @title = "Following"
+    @user = User.find(params[:id])
+    @users = @user.following.paginate(:page => params[:page])
+    render 'show_follow'
+  end
+  
+  def followers
+    @title = "Followers"
+    @user = User.find(params[:id])
+    @users = @user.followers.paginate(:page => params[:page])
+    render 'show_follow'
   end
 
   def new
