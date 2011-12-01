@@ -1,0 +1,5 @@
+//this has been modified for jquery '.update' => '.html' and 
+//a # sits infront of the dollar sign thingy
+
+$("#follow_form").html("<%= escape_javascript(render('users/unfollow'))%>")
+$("#followers").html('<%= "#{@user.followers.count} followers" %>')
